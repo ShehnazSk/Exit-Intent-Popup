@@ -1,0 +1,130 @@
+<!doctype>
+<html>
+
+<head>
+    <title>Exit popup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/ysExit.css" type="text/css">
+
+</head>
+
+<body>
+    <h2 class="desktop-text"> Move your cursor to another tab</h2>
+    <div class="test2">
+        <div class="row">
+            <div class="col-lg-7 col-sm-12 col-xs-12">
+                <div class="header">
+                    <h3>GET $10, OFF WHEN YOU SIGN UP FOR</h3>
+                    <P>SAVINGS, NEWS, UPDATES AND MORE</P>
+                </div>
+                <div class="input">
+                    <input type="text" class="button inputFeild" id="name" name="name" placeholder="your name"
+                        required="required">
+                    <p class="error nameError"></p>
+                    <input type="text" class="button inputFeild" id="email" name="email" placeholder="email address"
+                        required="required">
+                    <p class="error emailError"></p>
+                    <input type="checkbox" id="check" class="checkboxClass">
+                    <span class="checkboxClass_span">Check this box to receive monthly newsletter</span>
+                    <br>
+                    <p class="error checkError"></p>
+                    <input type="submit" class="button submit" id="submit" value="SIGN UP">
+                </div>
+                <div class="no-thanks">
+                    <a href="#" class="ys-exit">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="col-lg-5 mobile-hide">
+                <img src="img/sale.png" alt="" width="100%">
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+<!-- scirpts -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/ysExit.js"></script>
+
+
+    <script>
+        cookies = {
+            set: function (name, value, days) {
+                var components = [name + '=' + value];
+
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 3600 * 1000));
+                    components.push('expires=' + date.toGMTString());
+                }
+
+                components.push('path=/');
+
+                document.cookie = components.join('; ');
+            },
+            get: function (name) {
+                var start = name + '=',
+                    arr = document.cookie.split(';'),
+                    i;
+
+                for (i = 0; i < arr.length; i++) {
+                    var item = arr[i].trim();
+
+                    if (item.indexOf(start) === 0) {
+                        return item.substring(start.length);
+                    }
+                }
+
+                return null;
+            }
+        }
+        var options = {
+            debug: true,
+        }
+        if ($(document).width() > 1200) {
+            $('.test2').ysExit(options);
+        }
+        else {
+            var outter = $(".test2")[0].outerHTML;
+            $(".test2").remove();
+            if (!cookies.get('email')) {
+                $("body").addClass('mobile-view');
+                $("body").append('<div class="ys-layer"></div>')
+                $("body").append('<div class="ys-container" id="ys-container"><div class="ys-box"><a class="ys-popup-close" href="#">x</a><div class="ys-popup-content"></div></div></div>')
+                setTimeout(() => {
+                    $('.ys-popup-content').append(outter)
+                    $('.ys-popup-content').show()
+                    $(".ys-container").show();
+                }, 5000);
+            }
+        }
+
+        $("body").on("click", "#submit", function(e){
+            var email = $('#email').val();
+            var name = $('#name').val();
+            var check = $('#check').is(":checked");
+            if (email && name && check) {
+                var obj = {}
+                obj['name'] = name;
+                obj['email'] = email;
+                obj['check'] = check
+                cookies.set('email', JSON.stringify(obj));
+                $(".ys-container").hide();
+            }
+            else {
+                var name_text = name ? '' : 'Please enter name'
+                $(".nameError").html(name_text)
+    
+                var email_text = email ? '' : 'Please enter email'
+                $(".emailError").html(email_text)
+    
+                var check_text = check ? '' : 'Please check'
+                $(".checkError").html(check_text)
+            }
+            e.preventDefault();
+        })
+
+    </script>
+</html>

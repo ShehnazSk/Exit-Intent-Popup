@@ -1,0 +1,255 @@
+.ys-layer {
+    display: none;
+    background-image: url(../img/pattern.png);
+    opacity: 0.7;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.ys-container {
+    display: none;
+    position: fixed;
+    width: 100%;
+    min-height: 10%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 9999;
+}
+
+.ys-container.visible,
+.ys-layer.visible {
+    display: block;
+}
+
+.ys-box {
+    background-color: #fff;
+    width: 0;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 5px 0 5px 5px;
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .8);
+    transition: height .2s ease-in-out;
+}
+
+.ys-popup-close {
+    background: #fff;
+    position: absolute;
+    color: #000;
+    text-align: center;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 19px;
+    text-decoration: none;
+    text-indent: -5000px;
+    display: block;
+    box-sizing: border-box;
+    border-radius: 50%;
+    right: 0px;
+    top: 0px;
+    width: 0;
+    height: 0;
+    transform: translateX(50%) translateY(-50%);
+    transition: .2s ease-in-out;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.ys-container.finished .ys-popup-close {
+    width: 28px;
+    height: 28px;
+    text-indent: 0;
+}
+
+.ys-popup-content {
+    display: none;
+}
+
+.ys-container.finished .ys-popup-content {
+    display: block;
+}
+
+.ys-popup-close:hover {
+    text-decoration: none;
+    color: #f00;
+}
+
+.test2 {
+    background: #FFC107;
+    font-family: 'Lato', sans-serif;
+    color: #000;
+    text-align: center;
+    padding: 10px;
+}
+
+form {
+    width: 450px;
+    margin: 17% auto;
+}
+
+
+.header {
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align: left;
+    margin: 0px 10px;
+}
+
+.header h3 {
+    margin: 6px 0px;
+    font-weight: 700;
+}
+
+p {
+    margin: 0;
+    font-size: 20px;
+}
+
+.description {
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 1.3em;
+    margin: -2px 0 45px;
+}
+
+
+.input {
+    display: block;
+    text-align: left;
+}
+
+
+.button {
+    height: 60px;
+    border: none;
+    margin: 0px 10px;
+}
+
+
+.inputFeild {
+    width: 75%;
+    background: #FDFCFB;
+    font-family: inherit;
+    color: #737373;
+    letter-spacing: 1px;
+    text-indent: 5%;
+    border-radius: 2px;
+    margin: 10px;
+    display: block;
+}
+
+
+.submit {
+    display: block;
+    width: 75%;
+    height: 60px;
+    background: #000000;
+    font-family: inherit;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background .3s ease-in-out;
+    margin: 0px 10px;
+}
+
+.mobile-hide {
+    display: block;
+}
+
+input:focus {
+    outline: none;
+    outline: 2px solid #E86C8D;
+    box-shadow: 0 0 2px #E86C8D;
+}
+
+.no-thanks {
+    margin: 20px;
+    text-align: center;
+    width: 75%;
+}
+
+a {
+    color: #000;
+}
+
+.checkboxClass {
+    display: inline-block;
+    margin: 15px 10px !important;
+
+}
+
+.desktop-view {
+    padding: 40px;
+}
+
+.mobile-view .ys-box {
+    width: 100%;
+}
+
+@media only screen and (max-width: 375px) {
+    .submit {
+        margin-top: 10px;
+        width: 90%;
+    }
+
+    .no-thanks {
+        width: 100%;
+        margin: 0px;
+        padding: 10px;
+    }
+
+    .mobile-hide {
+        display: none;
+    }
+
+    .desktop-view {
+        padding: 18px;
+    }
+
+    .checkboxClass {
+        display: inline-block;
+        margin: 3px 3px 0px 12px !important;
+    }
+
+    .checkboxClass_span {
+        font-size: 11px;
+    }
+
+    .mobile-view .ys-box {
+        width: 85%;
+    }
+
+    .header h3 {
+        font-size: 12px;
+    }
+
+    .header p {
+        font-size: 11px;
+    }
+
+    .inputFeild {
+        width: 90%;
+        height: 40px;
+    }
+
+    .ys-popup-close {
+        width: 28px;
+        height: 28px;
+        text-indent: 0px;
+    }
+}
+
+.error {
+    color: red;
+    font-size: 13px;
+    margin: 0px 0px 0px 15px;
+}
